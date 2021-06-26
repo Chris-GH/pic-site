@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+        body{
+            background-color:black;
+        }
+        div{
+            margin:0;
+            padding:0;
+        }
+        .mytxt{
+            position:absolute;
+            left:900px;
+            top:300px;
+        }
+        .txt1{
+            color:white;
+            font-size:40px;
+            margin-bottom:20px;
+        }
+        .txt2{
+            color:white;
+            font-size:40px;
+        }
+        .heart{
+            position:absolute;
+            transform:rotate(-45deg);
+            transition:0.5s;
+            left:500px;
+            top:200px;
+        }
+        .part1-big{
+            height:100px;
+            width:200px;
+            border-top-left-radius:100px;
+            border-top-right-radius:100px;
+            border:2px solid white;
+            border-bottom:none;
+            
+        }
+        .part2-big{
+            height:200px;
+            width:300px;
+            border-top-right-radius:100px;
+            border-bottom-right-radius:100px;
+            border:2px solid white;
+            border-top:none;
+        }
+        .part1{
+            
+            height:50px;
+            width:100px;
+            border-top-left-radius:50px;
+            border-top-right-radius:50px;
+            border:2px solid white;
+            border-bottom:none;
+            
+        }
+        .part2{
+            
+            height:100px;
+            width:150px;
+            border-top-right-radius:50px;
+            border-bottom-right-radius:50px;
+            border:2px solid white;
+            border-top:none;
+        }
+        .heart1{
+            position:absolute;
+            transform:rotate(-45deg);
+            
+        }
+        .heart2{
+            position:absolute;
+            transform:rotate(-45deg);
+            left:200px;
+        }
+        .heart3{
+            position:absolute;
+            transform:rotate(-45deg);
+            left:400px;
+        }
+        .heart4{
+            position:absolute;
+            transform:rotate(-45deg);
+            left:600px;
+        }
+        .heart5{
+            position:absolute;
+            transform:rotate(-45deg);
+            left:800px;
+        }
+        .heart6{
+            position:absolute;
+            transform:rotate(-45deg);
+            left:1000px;
+        }
+        .heart7{
+            position:absolute;
+            transform:rotate(-45deg);
+            left:1200px;
+        }
+        @keyframes boom{
+            0% {transform:scale(1) rotate(-45deg)}
+            25% {transform:scale(0.5) rotate(-45deg)}
+            50% {transform:scale(1) rotate(-45deg)}
+            75% {transform:scale(1.2) rotate(-45deg)}
+            100% {transform:scale(1) rotate(-45deg)}
+        }
+        @keyframes fade{
+            0%{
+                background-color:pink;
+                opacity:0.5;
+            }
+            50%{
+                background-color:red;
+                box-shadow:0 0 10px red,0 0 20px red,0 0 40px red;
+                opacity:1;
+            }
+            100%{
+                background-color:red;
+                box-shadow:0 0 10px red,0 0 20px red,0 0 40px red,0 0 80px red,0 0 160px red;
+                opacity:0.5;
+            }
+        }
+        .bounce{
+    
+            animation:boom 1.5s infinite;
+        }
+        .fade{
+            animation:fade 1.5s linear infinite;
+        }
+        .move1{
+            transition:0.5s;
+            transform:translateX(300px) rotate(-45deg);
+        }
+    </style>
+  </head>
+  <body>
+    <div class="mytxt">
+        <div class="txt1">幸福加载中...</div>
+        <div class="txt2"><span>Loading...</span><span id="numb" style="margin-left:30px;">0%</span></div>
+    </div>
+    <div class="heart">
+        <div class="part1-big"></div>
+        <div class="part2-big"></div>
+    </div>
+    <div class="heart1">
+        <div class="part1"></div>
+        <div class="part2"></div>
+    </div>
+    <div class="heart2">
+        <div class="part1"></div>
+        <div class="part2"></div>
+    </div>
+    <div class="heart3">
+        <div class="part1"></div>
+        <div class="part2"></div>
+    </div>
+    <div class="heart4">
+        <div class="part1"></div>
+        <div class="part2"></div>
+    </div>
+    <div class="heart5">
+        <div class="part1"></div>
+        <div class="part2"></div>
+    </div>
+    <div class="heart6">
+        <div class="part1"></div>
+        <div class="part2"></div>
+    </div>
+    <div class="heart7">
+        <div class="part1"></div>
+        <div class="part2"></div>
+    </div>
+    <script>
+        let colors = ["red","orange","yellow","blue","pink","purple","green"];
+        let heart = document.querySelector('.heart');
+        let big1 = heart.querySelector('.part1-big');
+        let big2 = heart.querySelector('.part2-big');
+        let mytxt = document.querySelector('.mytxt');
+        let numberspan = document.getElementById('numb');
+        var hearts = [];
+        let heart1 = document.querySelector('.heart1');hearts.push(heart1);
+        let heart2 = document.querySelector('.heart2');hearts.push(heart2);
+        let heart3 = document.querySelector('.heart3');hearts.push(heart3);
+        let heart4 = document.querySelector('.heart4');hearts.push(heart4);
+        let heart5 = document.querySelector('.heart5');hearts.push(heart5);
+        let heart6 = document.querySelector('.heart6');hearts.push(heart6);
+        let heart7 = document.querySelector('.heart7');hearts.push(heart7);
+        let n=0;
+        let val1='';
+        light();
+        function delay(t){
+            return new Promise(r=>setTimeout(r,t));
+        }
+        async function light(){
+            val1 = setInterval(increase,20);
+            for(let i=0;i<7;i++){
+                hearts[i].querySelector(".part1").style.backgroundColor = colors[4];
+                hearts[i].querySelector(".part2").style.backgroundColor = colors[4];
+                await delay(500);
+            }
+            big1.style.backgroundColor = colors[0];
+            big2.style.backgroundColor = colors[0];
+            await delay(500);
+            for(let i=0;i<7;i++){
+                hearts[i].querySelector(".part1").style.backgroundColor = colors[i];
+                hearts[i].querySelector(".part2").style.backgroundColor = colors[i];
+            }
+            await delay(500);
+            setInterval(changecolor,1000);
+            heart.classList.add("bounce");
+            big1.classList.add("fade");
+            big2.classList.add("fade");
+            return 0;
+        }
+        function increase(){
+            n++;
+            const percent = Math.floor(n*2000/3000);
+            if(percent===100){
+                clearInterval(val1);
+            }
+            numberspan.innerHTML = percent + "%";
+            
+        }
+        function changecolor(){
+            const color = colors.shift();
+            colors.push(color);
+            for(let i=0;i<7;i++){
+                hearts[i].querySelector(".part1").style.backgroundColor = colors[i];
+                hearts[i].querySelector(".part2").style.backgroundColor = colors[i];
+            }
+            //big1.style.backgroundColor = colors[3];
+            //big2.style.backgroundColor = colors[3];
+        }
+
+        function changex(){
+            //heart.classList.add("move1");
+            
+        }
+        function cancelchangex(){
+            heart.classList.remove("move1");
+        }
+    </script>
+  </body>
+</html>
